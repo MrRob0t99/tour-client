@@ -1,0 +1,28 @@
+<nav class="navigation navbar navbar-expand-lg navbar-dark">
+  <a class="navbar-brand" href="/tours"><img class="logo" src="/src/assets/ll.svg" alt=""></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <a href="/tours">Tours</a>
+      <a (click)="openDialogAboutUs()">About Us</a>
+      <a (click)="openDialogContact()">Contact</a>
+      <a href="/orders" *ngIf="authService.isLoggedIn()">Orders</a>
+    </ul>
+    <ul class="navbar-nav mr-auto">
+      <a href="/add-tour" *ngIf="authService.isLoggedIn() && authService.isAdmin()">Add Tour</a>
+      <a href="/admin-order" *ngIf="authService.isLoggedIn() && authService.isAdmin()">Admin Orders</a>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <a *ngIf="authService.isLoggedIn()" class="iconBasketHref" href="/busket"><img class="iconBasket" src="/src/image/makefg.png"
+          alt="">
+      </a>
+      <a href="/logIn" *ngIf="!authService.isLoggedIn()">Sign In</a>
+      <a href="/registration" *ngIf="!authService.isLoggedIn()">Register</a>
+      <a (click)="authService.logout()" *ngIf="authService.isLoggedIn()">SignOut</a>
+    </ul>
+  </div>
+</nav>

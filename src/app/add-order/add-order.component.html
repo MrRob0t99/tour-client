@@ -1,0 +1,45 @@
+<div class="container">
+  <mat-form-field class="example-full-width">
+    <input matInput [(ngModel)]="date"  [min]="minDate" [max]="maxDate" [matDatepicker]="picker" placeholder="Choose a date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Duration" (selectionChange)="countTotalPrice()" [(value)]="selectedDuration">
+      <mat-option *ngFor="let item of listDuration" [value]="item">
+        {{item}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input (ngModelChange)="countTotalPrice()" matInput type="number" min="1" max="10" placeholder="Count of People"
+      [(ngModel)]="selectedCountPeople" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" placeholder="Phone number" [(ngModel)]="phoneNumber" required>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select [(ngModel)]="selectedCity" placeholder="From city" required>
+      <mat-option *ngFor="let item of CityEnum.values()" [value]="item">
+        {{item}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="Type of Food" required (selectionChange)="countTotalPrice()" [(value)]="selectedTypeOfFood">
+      <mat-option *ngFor="let item of TypeOfFood.values();" [value]="item">
+        {{item}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <p>Total price: {{totalPrice}}</p>
+
+  <button (click)="createOrder()" class="buttonOrder" mat-button>Confirm</button>
+  <button (click)="close()"class="buttonOrder" mat-button>Cancel</button>
+</div>

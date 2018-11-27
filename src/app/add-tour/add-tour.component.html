@@ -1,0 +1,82 @@
+<div class="mainContent">
+  <div class="container">
+    <form [formGroup]="addTour">
+
+      <mat-form-field>
+        <mat-select (selectionChange)="onChange($event)" placeholder="Country" [(value)]="selectedCountry">
+          <mat-option value="addCountry">Add new</mat-option>
+          <mat-option *ngFor="let country of listCountry" [value]="country.id">
+            {{country.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select (selectionChange)="onChangeCity($event)" placeholder="City" [(value)]="selectedCity">
+          <mat-option *ngIf="selectedCountry!=0" value="addCity">Add new</mat-option>
+          <mat-option *ngFor="let city of listCities" [value]="city.id">
+            {{city.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select (selectionChange)="onChangeHotel($event)" placeholder="Hotel" [(value)]="selectedHotel"
+           placement="right">
+          <mat-option *ngIf="selectedCity!=0" value="addHotel">
+            Add new
+          </mat-option>
+          <mat-option *ngFor="let hotel of hotels" [value]="hotel.id" (mouseenter)="mouseEnter(hotel.id)" (mouseleave)="mouseLeave(hotel)">
+            {{hotel.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+
+      <mat-form-field>
+        <input matInput placeholder="Name" formControlName="name" required>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput placeholder="Price" formControlName="price" required>
+      </mat-form-field>
+      <div id="myCarousel" class="carousel slide" data-ride="carousel" *ngIf="listUrl[0]">
+        <div class="carousel-inner" role="listbox">
+
+          <div class="item active" id="firstElem">
+            <a (click)=close(listUrl[0])><img class="close" src="/src/image/baseline-close-24px (1).svg" /></a>
+            <img [src]="listUrl[0].key" class="images">
+          </div>
+
+          <div *ngFor="let elem of getList()" class="item">
+            <a (click)=close(elem)><img class="close" src="/src/image/baseline-close-24px (1).svg" /></a>
+            <img [src]="elem.key" class="images">
+          </div>
+
+        </div>
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      <div class="buttons">
+        <button class="submitButton" style="width: 140px;" (click)="createTour()" color="primary" [disabled]="addTour.invalid" mat-raised-button>
+          Submit
+        </button>
+        <label mat-raised-button class="uploadButton btn btn-default btn-file">
+          Upload Photo <input type="file" style="display: none;" (change)="onSelectFile($event)" accept="image/*">
+        </label>
+      </div>
+    </form>
+  </div>
+  <div class="detailInfo" *ngIf="ShowDetail">
+    <p>Name: {{selectHotel.name}}</p>
+    <p>Description: {{selectHotel.description}}</p>
+    <p>Address: {{selectHotel.address}}</p>
+    <p>Rating: {{selectHotel.rating}}</p>
+  </div>
+</div>

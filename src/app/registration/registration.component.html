@@ -1,0 +1,31 @@
+  <div class="main-container">
+  <div class="container">
+    <form [formGroup]= "registrationForm">
+        <mat-form-field>
+            <input matInput placeholder="FirstName" formControlName="firstName" required>
+            <mat-error *ngIf="!registrationForm.get('firstName').valid && registrationForm.get('firstName').touched">Firstname is required</mat-error>
+         </mat-form-field>
+         <mat-form-field>
+            <input matInput placeholder="LastName" formControlName="lastName" required>
+            <mat-error *ngIf="!registrationForm.get('lastName').valid && registrationForm.get('lastName').touched">Lastname is required</mat-error>
+         </mat-form-field>
+         <mat-form-field>
+            <input matInput placeholder="UserName" formControlName="userName" required>
+            <mat-error *ngIf="!registrationForm.get('userName').valid && registrationForm.get('userName').touched">Surename is required</mat-error>
+         </mat-form-field>
+         <mat-form-field>
+            <input matInput placeholder="Email" formControlName="email" required>
+         </mat-form-field>
+         <mat-form-field>
+            <input required matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+            <mat-icon class="icon" matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+          <mat-form-field onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false">
+              <input required matInput placeholder="Enter your password" [type]="hideConfirmPassword ? 'password' : 'text'" formControlName="confirmPassword">
+              <mat-icon  class="icon" matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </mat-form-field>
+      <button (click)="submit()" color="primary" [disabled]="registrationForm.invalid || !isEquels()" mat-raised-button>Submit</button>
+    </form>   
+    </div>
+    </div>
+

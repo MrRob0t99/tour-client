@@ -1,0 +1,17 @@
+mat-form-field{
+    width: 100%;
+}
+textarea{
+    min-height: 100px;
+}
+
+.canselButton{
+    float: left;
+    background:  #2f8def;
+    widows: 100px;
+}
+.submitButton{
+    float: right;
+    background:  #2f8def;
+    widows: 100px;
+}

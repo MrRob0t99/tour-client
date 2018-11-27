@@ -1,0 +1,108 @@
+.container {
+    width: 400px;
+    margin-top: 40px;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.container mat-form-field {
+    width: 100%;
+    margin: 5px;
+}
+
+.container button {
+    width: 100px;
+}
+
+.close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 20px;
+    height: 20px;
+    left: 180px;
+}
+
+.detailInfo {
+    max-width: 350px;
+    max-height: 400px;
+    position: absolute;
+    top: 200px;
+    right: 100px;
+    text-align: center;
+    word-wrap: break-word;
+    border: 1px solid #2f8def;
+    border-radius: 15px;
+    padding: 3px;
+}
+
+.detailInfo p {
+    width: 100%;
+}
+
+.myPhoto {
+    width: 100px;
+    height: 100px;
+    background: aqua;
+}
+
+.images {
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+    min-width: 100%;
+    object-fit: cover;
+}
+
+#myCarousel, .carousel-inner {
+    width: 100%;
+    height: 260px;
+    max-height: 260px;
+}
+
+.btn-file {
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    -webkit-appearance: none;
+    transition: all .25s ease-out;
+    border: 1px solid transparent;
+    border-radius: 0;
+    padding: .85em 1em;
+    margin: 0 1rem 1rem 0;
+    font-size: .9rem;
+    background: #2199e8;
+    color: #fff;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+.btn-file input[type=file] {
+    position: absolute!important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+}
+
+.carousel-control.left, .carousel-control.right {
+    background-image: none !important;
+    filter: none !important;
+    color: black;
+}
+
+.uploadButton {
+    float: left;
+    width: 140px;
+    border-radius: 3px;
+}
+
+.submitButton {
+    float: right;
+    height: 50px;
+    background: #2199e8;
+}
+
+.buttons {
+    margin-top: 20px;
+}

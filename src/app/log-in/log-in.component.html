@@ -1,0 +1,17 @@
+<div class="container">
+    <form [formGroup]= "logInForm">
+         <mat-form-field>
+            <input matInput placeholder="UserName" formControlName="userName" required>
+         </mat-form-field>
+         <mat-form-field>
+            <input required matInput placeholder="Enter your password" [type]="hide ? 'password' : 'text'" formControlName="password">
+            <mat-icon style="cursor: pointer;" matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </mat-form-field>
+      <button style="margin-bottom: 15px;" (click)="logIn()" color="primary" [disabled]="logInForm.invalid" mat-raised-button>Submit</button>
+    </form>
+    <div *ngIf="invalidLogin">Data not valid</div>
+    <div style="font-size: 14px;">
+    <a  href="">Forgot password?</a>
+    <p>No account yet? <a href="/registration">Register</a></p>
+   </div>
+ </div>

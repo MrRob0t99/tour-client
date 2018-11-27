@@ -1,0 +1,25 @@
+<div class="container">
+  <form [formGroup]= "hotelForm">
+  <mat-form-field>
+     <input matInput placeholder="Name" required formControlName="name" [(ngModel)]="hotel.name">
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <textarea matInput placeholder="Description" required formControlName="description" [(ngModel)]="hotel.description"></textarea>
+  </mat-form-field>
+  <br>
+  <mat-form-field>
+    <input matInput placeholder="Address" required formControlName="address" [(ngModel)]="hotel.address">
+ </mat-form-field>
+ <br>
+ <mat-form-field>
+    <mat-select placeholder="Rating" formControlName="rating" [(ngModel)]="hotel.rating">
+      <mat-option *ngFor="let rating of listRating" [value]="rating">
+        {{rating}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+<button class="canselButton"color="primary" mat-dialog-close="CloseWindows" mat-raised-button>Cansel</button>
+<button class="submitButton"color="primary" [mat-dialog-close]="hotel" mat-raised-button>Submit</button>
+</div>

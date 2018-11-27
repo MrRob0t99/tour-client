@@ -1,0 +1,67 @@
+<div class="container">
+
+  <div class="mainContent">
+    <div class="leftContent">
+      <mat-form-field>
+        <mat-select (selectionChange)="onChange($event)" [(value)]="selectedCountry" placeholder="Country">
+
+          <mat-option *ngFor="let item of listCountry" [value]="item.id">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-select (selectionChange)="onChangeCity($event)" [(value)]="selectedCity" placeholder="City">
+          <mat-option *ngFor="let item of listCity" [value]="item.id">
+            {{item.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="slider">
+        <ng5-slider [(value)]="minValue" [(highValue)]="maxValue"  [options]="options"></ng5-slider>
+      </div>
+      <div class="filter">
+        <button (click)="applyFilter()" class="btn btn-primary">Apply filter</button>
+      </div>
+      <div class="filter">
+        <button (click)="clearFilter()" class="btn btn-primary">Clear filter</button>
+      </div>
+    </div>
+
+    <div class="rightContent">
+      <div class="search">
+        <mat-form-field appearance="outline">
+          <mat-label>Search</mat-label>
+          <input [(ngModel)]="searchString" class="searchInput" matInput>
+        </mat-form-field>
+
+        <button (click)="clearFilter()" type="button" class="btn btn-primary searchButton">Search</button>
+
+      </div>
+      <div class="card-deck" *ngIf="collection">
+        <div class="card-group">
+          <div class="col-4" *ngFor="let item of collection | paginate: { itemsPerPage: size, currentPage: curentPage }">
+            <div class="card">
+              <img class="d-block" [src]="item.path" alt="First slide">
+              <div class="card-body">
+                <h5 class="card-title">{{item.name}}</h5>
+                <p class="card-text">₴{{item.price}}</p>
+              </div>
+              <div class="card-footer">
+                <button (click)="addToBusket(item.id)" class="btn btn-primary">Add to Basket</button>
+                <button class="btn btn-primary right" (click)="goTo(item.id)">See more detail</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="collection">
+        <div class="centerDiv">
+          <pagination-controls (pageChange)="cangePage($event)"></pagination-controls>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

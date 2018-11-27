@@ -1,0 +1,10 @@
+@import '~bootstrap/dist/css/bootstrap.css';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css'; 
+@import "~nouislider/distribute/nouislider.min.css";
+body{
+    font-size: 18px;
+    outline:0 !important;
+}
+.ng5-slider .ng5-slider-pointer{
+    outline:0 !important;
+}

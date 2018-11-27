@@ -1,0 +1,26 @@
+<div class="container">
+  <p style="text-align: center; margin-bottom: 200px; font-size: 30px;" *ngIf="!Items[0]">Busket is empty</p>
+  <div class="contentBusket" *ngIf="Items">
+    <div class="itemBusket" *ngFor="let elem of Items">
+      <div class="photo">
+        <img class="images" [src]="elem.path" alt="">
+      </div>
+      <a (click)=delete(elem.tourId)>
+        <img class="close" src="/src/image/baseline-close-24px (1).svg" />
+      </a>
+      <div class="info">
+        <h2 class="tourName">{{elem.name}}</h2>
+        <p>Country: {{elem.countryName}}</p>
+        <p>City: {{elem.cityName}}</p>
+        <p>Hotel: {{elem.hotelName}}</p>
+        <p>Adress: {{elem.adress}}</p>
+        <button (click)="goTo(elem.tourId)" class="btn btn-primary">Go To Tour</button>
+      </div>
+      <div class="priceTour">
+        <p style="margin-bottom: 0px">Price: {{elem.price}}</p>
+        <p style="font-size: 12px">(One person for seven days)</p>
+        <button (click)="toOrder(elem)" class="btn btn-primary">To order</button>
+      </div>
+    </div>
+  </div>
+</div>
