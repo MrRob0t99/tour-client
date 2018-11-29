@@ -22,7 +22,7 @@ export class RegistrationComponent {
       'firstName': new FormControl('', Validators.required),
       'lastName': new FormControl('', Validators.required),
       'userName': new FormControl('', Validators.required),
-      'email': new FormControl('', Validators.required),
+      'email': new FormControl('', [Validators.required, Validators.email]),
       'password': new FormControl('', Validators.required),
       'confirmPassword': new FormControl('', Validators.required),
     });
@@ -41,6 +41,7 @@ export class RegistrationComponent {
       user.userName = this.registrationForm.controls.userName.value;
     this.authService.registration(user)
       .subscribe(response => {
+        alert('Please confirm your registration. On you email was send message');
         this.route.navigateByUrl('/tours');
       }, this.errorHandler.handle);
   }

@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material';
-import { AddCountryComponent } from 'src/app/add-country/add-country.component';
-import { AddCityComponent } from '../add-city/add-city.component';
 import { AddHotelComponent } from '../add-hotel/add-hotel.component';
 import { Hotel } from '../model/hotel.model';
 import { Country } from '../model/country.model';
@@ -15,6 +13,7 @@ import { TourService } from '../services/tour.service';
 import 'rxjs/Rx';
 import { ExpectedService } from '../services/expected.service';
 import { Router } from '@angular/router';
+import { AddPlaceComponent } from '../add-place/add-place.component';
 
 @Component({
   selector: 'app-add-tour',
@@ -57,7 +56,6 @@ export class AddTourComponent {
     this.showId = id;
     this.setHotel();
     this.ShowDetail = true;
-    console.log(this.selectHotel);
   }
 
   mouseLeave(obj: any) {
@@ -134,33 +132,35 @@ export class AddTourComponent {
   }
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(AddCountryComponent, {
+    const dialogRef = this.dialog.open(AddPlaceComponent, {
       width: '350px',
       height: '160px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== 'CloseWindows') {
-        this.createCountry(result);
+      if (!result) {
+        const id = this.listCountry[0].id;
+        this.selectedCountry = id;
+        this.getCities(id);
       } else {
-        this.selectedCountry = this.listCountry[0].Id;
-        this.getCities(this.selectedCountry);
+        this.createCountry(result);
       }
     });
   }
 
   openDialogCity(): void {
-    const dialogRef = this.dialog.open(AddCityComponent, {
+    const dialogRef = this.dialog.open(AddPlaceComponent, {
       width: '350px',
       height: '160px'
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result !== 'CloseWindows') {
-        this.createCity(result);
+      if (!result) {
+        const id = this.listCities[0].id;
+        this.selectedCity = id;
+        this.getHotels(id);
       } else {
-        this.selectedCity = this.listCities[0].Id;
-        this.getHotels(this.selectedCity);
+        this.createCity(result);
       }
     });
   }
@@ -172,7 +172,7 @@ export class AddTourComponent {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      if (result === 'CloseWindows') {
+      if (!result) {
         this.selectedHotel = this.hotels[0].id;
       } else {
         this.createHotel(result);
@@ -212,7 +212,6 @@ export class AddTourComponent {
   }
 
   createHotel(hotel: Hotel) {
-    console.log(hotel.address);
     hotel.cityId = this.selectedCity;
     this.hotelService.post(hotel)
       .subscribe(response => {

@@ -1,69 +1,70 @@
-<div class="conteiner">
-  <div *ngIf="tour" class="main">
-    <h1 class="center">{{tour.name}}</h1>
-    <div class="content">
-      <div class="conteinerCarousel">
-        <div id="myCarousel" class="carousel slide" data-ride="carousel" *ngIf="listUrl[0]">
-          <div class="carousel-inner" role="listbox">
-            <div class="item active" id="firstElem">
-              <img [src]="listUrl[0]" class="images">
-            </div>
+<div class="main">
+  <h1 class="center">{{tour.name}}</h1>
+  <div class="content">
+    <div class="conteinerCarousel">
+      <div id="myCarousel" class="carousel slide" data-ride="carousel" *ngIf="listUrl[0]">
+        <div class="carousel-inner" role="listbox">
+          <div class="item active" id="firstElem">
+            <img [src]="listUrl[0]" class="images">
+          </div>
 
-            <div *ngFor="let elem of getList()" class="item">
-              <img [src]="elem" class="images">
-            </div>
+          <div *ngFor="let elem of getList()" class="item">
+            <img [src]="elem" class="images">
           </div>
         </div>
       </div>
-      <div class="hotelDescription">
-        <p class="center">
-          {{tour.description}}
-        </p>
-      </div>
-      <div class="hotelInfo">
-        <ul>
-          <li>
-            <img src="/src/assets/planet5-512.png" class="icon" alt="">
-            <p class="flot"> Country <span class="right">{{tour.countyName}}</span></p>
-          </li>
-          <li>
-            <img src="/src/assets/city-icon-png-3.png" class="icon" alt="">
-            <p class="flot">City <span class="right">{{tour.cityName}}</span></p>
-          </li>
-          <li>
-            <img src="/src/assets/img_481249.png" class="icon" alt="">
-            <p class="flot">Hotel <span class="right">{{tour.hotelName}}</span></p>
-          </li>
-          <li>
-            <img src="/src/assets/tool_five_star_flag_stars_228172.png" class="icon" alt="">
-            <p class="flot">Star <span class="right">{{tour.rating}}</span></p>
-          </li>
-          <li>
-            <img src="/src/assets/order-delivered-filled.png" class="icon" alt="">
-            <p class="flot">Address <span class="right">{{tour.adress}}</span></p>
-          </li>
-          <li>
-            <img src="/src/assets/img_568492.png" class="icon" alt="">
-            <p class="flot">Price <span class="right">{{tour.price}}</span></p>
-          </li>
-          <li>
-            <img src="/src/assets/55281.png" class="icon" alt="">
-            <p class="flot">Duration <span class="right">7 days</span></p>
-          </li>
-          <li>
-            <button (click)="addToBusket()" class="btn btn-primary">Add to Busket</button>
-          </li>
-          
-          <li>
-            <button (click)="toOrder()" class="btn btn-primary">To Order</button>
-          </li>
-
-          <li>
-            <button style="background: red;" *ngIf="authService.isLoggedIn() && authService.isAdmin()" (click)="deleteTour()" class="btn btn-primary">Delete tour</button>
-          </li>
-        </ul>
-       
-      </div>
     </div>
+    <div class="hotelDescription">
+      <p class="center">
+        {{tour.description}}
+      </p>
+    </div>
+
+    <div class="hotelInfo">
+      <ul>
+        <li>
+          <img src="assets/planet5-512.png" class="icon" alt="">
+          <p class="flot"> Country <span class="right">{{tour.countyName}}</span></p>
+        </li>
+        <li>
+          <img src="assets/city-icon-png-3.png" class="icon" alt="">
+          <p class="flot">City <span class="right">{{tour.cityName}}</span></p>
+        </li>
+        <li>
+          <img src="assets/img_481249.png" class="icon" alt="">
+          <p class="flot">Hotel <span class="right">{{tour.hotelName}}</span></p>
+        </li>
+        <li>
+          <img src="assets/tool_five_star_flag_stars_228172.png" class="icon" alt="">
+          <p class="flot">Star <span class="right">{{tour.rating}}</span></p>
+        </li>
+        <li>
+          <img src="assets/order-delivered-filled.png" class="icon" alt="">
+          <p class="flot">Address <span class="right">{{tour.adress}}</span></p>
+        </li>
+        <li>
+          <img src="assets/img_568492.png" class="icon" alt="">
+          <p class="flot">Price <span class="right">{{tour.price}}</span></p>
+        </li>
+        <li>
+          <img src="assets/55281.png" class="icon" alt="">
+          <p class="flot">Duration <span class="right">7 days</span></p>
+        </li>
+        <li>
+          <button (click)="addToBusket()" class="btn btn-primary">Add to Busket</button>
+        </li>
+
+        <li>
+          <button (click)="toOrder()" class="btn btn-primary">To Order</button>
+        </li>
+
+        <li>
+          <button style="background: red;" *ngIf="authService.isLoggedIn() && authService.isAdmin()" (click)="deleteTour()"
+            class="btn btn-primary">Delete tour</button>
+        </li>
+      </ul>
+
+    </div>
+    
   </div>
 </div>

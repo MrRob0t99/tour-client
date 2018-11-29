@@ -9,23 +9,24 @@
 
 .col-4 img{
     height: 140px;
-
     display: block;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 .col-4{
-   height: 300px;
-   
+    height: 300px;
     min-width: 274px;
     padding: 0;
 }
 
 .card{
     margin: 10px;
+    border-radius: 5px;
 }
 
 .rightContent{
     float: left;
-    width:860px;
+    width:800px;
 }
 .center{
     text-align: center;
@@ -36,20 +37,14 @@
 }
 
 
-.mat-form-field-infix{
-    width: 100%;
-}
 .search{
     margin-bottom: 60px;
-}
-.searchInput{
-    width: 800px;
 }
 
 .leftContent{
     float: left;
     width: 260px;
-    margin-top: 120px;
+    margin-top: 140px;
     margin-right: 50px;
     margin-left: 50px;
 }

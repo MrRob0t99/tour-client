@@ -17,7 +17,8 @@ export class LogInComponent {
   invalidLogin = false;
 
   logInForm: FormGroup;
-  constructor(private router: Router, private authService: AuthService, private errorHandler: ExpectedService) {
+  constructor(private router: Router, private authService: AuthService,
+    private errorHandler: ExpectedService) {
     this.logInForm = new FormGroup({
       'userName': new FormControl('', Validators.required),
       'password': new FormControl('', Validators.required),

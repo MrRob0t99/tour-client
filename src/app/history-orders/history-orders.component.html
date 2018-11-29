@@ -1,12 +1,12 @@
 <div class="container">
-  <p style="text-align: center; margin-bottom: 200px; font-size: 30px;" *ngIf="!Items">List orders is empty</p>
+  <p style="text-align: center; margin-bottom: 200px; font-size: 30px;" *ngIf="Items.length===0">List orders is empty</p>
   <div class="contentBusket" *ngIf="Items">
     <div class="itemBusket" *ngFor="let elem of Items">
       <div class="photo">
         <img class="images" [src]="elem.path" alt="">
       </div>
       <a (click)=delete(elem.id)>
-        <img class="close" src="/src/image/baseline-close-24px (1).svg" />
+        <img class="close" src="/assets/baseline-close-24px (1).svg" />
       </a>
       <div class="info">
         <p class="tourName">Count people: {{elem.countPeople}}</p>

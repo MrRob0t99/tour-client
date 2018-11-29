@@ -9,10 +9,10 @@ import { TourService } from '../services/tour.service';
 import { GetTours } from '../model/get-tours.model';
 import { CountryService } from '../services/country.service';
 import { BusketService } from '../services/busket.service';
-import { Tour } from '../model/tour.model';
 import { HttpParams } from '@angular/common/http';
 import { GetToursResponse } from '../model/get-tour.respose';
 import { ExpectedService } from '../services/expected.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-get-all-tour',
@@ -54,12 +54,12 @@ export class GetAllTourComponent {
   constructor(public sanitizer: DomSanitizer,
     private router: Router, private cityService: CityService, private tourService: TourService,
     private countryService: CountryService, private busketServices: BusketService,
-    private erorrHandler: ExpectedService) {
+    private erorrHandler: ExpectedService, private authService: AuthService) {
     this.size = 9;
     this.getItems(1);
   }
   goTo(id: any) {
-    this.router.navigateByUrl('/get-tour/' + id);
+    this.router.navigateByUrl('/tour/' + id);
   }
 
 
@@ -67,15 +67,7 @@ export class GetAllTourComponent {
     return list.slice(1);
   }
 
-  search() {
-    const option = new GetTours();
-    option.searchString = this.searchString;
-
-    this.getItems(1, option);
-  }
-
   cangePage($event) {
-    console.log($event);
     this.getItems($event);
   }
 
@@ -91,20 +83,24 @@ export class GetAllTourComponent {
     this.getItems(1);
   }
 
-  getItems(page: number = 1, defOption: GetTours = null) {
+
+  getItems(page: number = 1, isSearch: boolean = false) {
 
     let httpParams = new HttpParams().append('page', page.toString())
-      .append('size', this.size.toString())
-      .append('min', this.minValue.toString())
-      .append('max', this.maxValue.toString())
-      .append('countryId', this.selectedCountry.toString())
-      .append('cityId', this.selectedCity.toString());
-    if (this.searchString !== '') {
+      .append('size', this.size.toString());
+
+      if (!isSearch) {
+        httpParams = httpParams.append('min', this.minValue.toString())
+        .append('max', this.maxValue.toString())
+        .append('countryId', this.selectedCountry.toString())
+        .append('cityId', this.selectedCity.toString());
+    }
+
+    if (isSearch && this.searchString !== '') {
       httpParams = httpParams.append('search', this.searchString);
     }
 
     this.tourService.getAll<GetToursResponse>(httpParams).subscribe(response => {
-      console.log(response.data);
       this.collection = new Array<any>(response.data.count);
       let counter = 0;
       const startIndex = (page - 1) * this.size;
@@ -113,8 +109,6 @@ export class GetAllTourComponent {
         this.collection[i] = response.data.listTour[counter];
         counter++;
       }
-      console.log(this.collection);
-      console.log(page);
       this.curentPage = page;
       this.getCountries();
 
@@ -127,6 +121,7 @@ export class GetAllTourComponent {
         this.listCountry = respose.data;
       }, this.erorrHandler.handle);
   }
+
 
   getCities(id: number) {
     this.cityService.getById<Array<City>>(id)
@@ -147,7 +142,10 @@ export class GetAllTourComponent {
   }
 
   addToBusket(tourId: number) {
-    this.busketServices.post({ tourId: tourId }).subscribe(response => {
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigateByUrl('/logIn');
+    }
+    this.busketServices.post({ tourId: tourId }).subscribe( _ => {
       alert('Added to busket');
     }, this.erorrHandler.handle);
   }

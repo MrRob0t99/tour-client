@@ -20,6 +20,6 @@
     </mat-select>
   </mat-form-field>
 </form>
-<button class="canselButton"color="primary" mat-dialog-close="CloseWindows" mat-raised-button>Cansel</button>
+<button class="canselButton"color="primary" (click)="close()" mat-raised-button>Cansel</button>
 <button class="submitButton"color="primary" [mat-dialog-close]="hotel" mat-raised-button>Submit</button>
 </div>

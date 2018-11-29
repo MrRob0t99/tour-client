@@ -12,7 +12,6 @@ export class DataService {
     }
 
     post(body: any) {
-        console.log(body);
         return this.http.post<AppResponse<number>>(this.uri, body);
     }
 

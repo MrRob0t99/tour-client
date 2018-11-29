@@ -20,7 +20,7 @@
       </mat-form-field>
 
       <div class="slider">
-        <ng5-slider [(value)]="minValue" [(highValue)]="maxValue"  [options]="options"></ng5-slider>
+        <ng5-slider [(value)]="minValue" [(highValue)]="maxValue" [options]="options"></ng5-slider>
       </div>
       <div class="filter">
         <button (click)="applyFilter()" class="btn btn-primary">Apply filter</button>
@@ -37,10 +37,10 @@
           <input [(ngModel)]="searchString" class="searchInput" matInput>
         </mat-form-field>
 
-        <button (click)="clearFilter()" type="button" class="btn btn-primary searchButton">Search</button>
+        <button (click)="getItems(1, true)" type="button" class="btn btn-primary searchButton">Search</button>
 
       </div>
-      <div class="card-deck" *ngIf="collection">
+      <div class="card-deck" *ngIf="collection.length>0">
         <div class="card-group">
           <div class="col-4" *ngFor="let item of collection | paginate: { itemsPerPage: size, currentPage: curentPage }">
             <div class="card">
@@ -57,10 +57,11 @@
           </div>
         </div>
       </div>
-      <div *ngIf="collection">
-        <div class="centerDiv">
-          <pagination-controls (pageChange)="cangePage($event)"></pagination-controls>
-        </div>
+      <div *ngIf="collection.length>0" class="centerDiv">
+        <pagination-controls (pageChange)="cangePage($event)"></pagination-controls>
+      </div>
+      <div *ngIf="!(collection.length>0)" class="centerDiv">
+        <p style="font-size: 20px;">The tour is empty</p>
       </div>
     </div>
   </div>

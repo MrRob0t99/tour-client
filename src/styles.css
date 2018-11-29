@@ -8,3 +8,6 @@ body{
 .ng5-slider .ng5-slider-pointer{
     outline:0 !important;
 }
+#wrap{
+    background-image: url(assets/bg-lightl-901.jpg);
+}

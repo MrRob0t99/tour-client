@@ -21,8 +21,6 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { AddTourComponent } from './add-tour/add-tour.component';
 import { MatDialogModule } from '@angular/material/dialog';
-import { AddCountryComponent } from './add-country/add-country.component';
-import { AddCityComponent } from './add-city/add-city.component';
 import { AddHotelComponent } from './add-hotel/add-hotel.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GetAllTourComponent } from './get-all-tour/get-all-tour.component';
@@ -52,11 +50,12 @@ import { JwtModule } from '@auth0/angular-jwt';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminOrdersComponent } from './amin-orders/amin-orders.component';
+import { AddPlaceComponent } from './add-place/add-place.component';
 
 const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
   { path: 'logIn', component: LogInComponent },
-  { path: 'get-tour/:id', component: GetTourComponent },
+  { path: 'tour/:id', component: GetTourComponent },
   { path: '', component: GetAllTourComponent },
   { path: 'tours', component: GetAllTourComponent },
   { path: 'confirmEmail', component: ConfirmEmailComponent },
@@ -81,8 +80,6 @@ export function tokenGetter() {
     HeaderComponent,
     FooterComponent,
     AddTourComponent,
-    AddCountryComponent,
-    AddCityComponent,
     AddHotelComponent,
     GetAllTourComponent,
     GetTourComponent,
@@ -95,6 +92,7 @@ export function tokenGetter() {
     AboutUsComponent,
     ContactComponent,
     AdminOrdersComponent,
+    AddPlaceComponent,
 
   ],
   imports: [
@@ -144,8 +142,8 @@ export function tokenGetter() {
     // { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
 
-  entryComponents: [AddTourComponent, AddCountryComponent, AddHotelComponent, HeaderComponent,
-    AboutUsComponent, AddCityComponent, GetTourComponent, AddOrderComponent, BusketComponent,
+  entryComponents: [AddTourComponent, AddPlaceComponent, AddHotelComponent, HeaderComponent,
+    AboutUsComponent, GetTourComponent, AddOrderComponent, BusketComponent,
     ConfirmationDialogComponent, HistoryOrdersComponent, ContactComponent],
 
   bootstrap: [AppComponent]

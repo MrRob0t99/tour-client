@@ -1,5 +1,5 @@
 .container{
-    padding:50px;
+    margin-top:80px;
     width: 400px;
     text-align:center;
     height: 100%;
@@ -9,9 +9,6 @@
     margin: 5px;
     
 }
-.container button{
-    width: 100px;
-}
 .main-container{
     width: 100%;
     height: 100%;
@@ -20,5 +17,10 @@
 }
 .icon{
     cursor: pointer;
-    user-select: none;
+}
+.submitButton{
+    background: #2f8def;
+    width: 100%;
+    height: 45px;
+    color: white;
 }

@@ -20,12 +20,13 @@ export class AddHotelComponent {
     }
     this.hotelForm = new FormGroup({
       'name': new FormControl('', Validators.required),
-      'description': new FormControl('', Validators.required),
+      'description': new FormControl('', [Validators.required, Validators.maxLength(500)]),
       'address': new FormControl('', Validators.required),
       'rating': new FormControl('', Validators.required),
     });
   }
-  onNoClick(): void {
+
+  close(): void {
     this.dialogRef.close();
   }
 

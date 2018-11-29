@@ -28,12 +28,4 @@ export class AdminOrdersComponent implements OnInit {
         this.Items = response.data;
       }, this.errorHandler.handle);
   }
-
-  getStatus(status: boolean) {
-    if (status) {
-      return 'Confirmed';
-    } else {
-      return 'Pending';
-    }
-  }
 }

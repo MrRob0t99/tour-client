@@ -9,14 +9,12 @@
         <p>Export from: {{CityEnum[elem.cityEnum]}}</p>
         <p>Type of Food: {{TypeOfFood[elem.typeOfFood]}}</p>
         <p>Duration: {{elem.duration}} days</p>
-        <p>StartDate: {{elem.startDate}}</p>
+        <p>StartDate: {{elem.startDate | date: 'mediumDate'}}</p>
         <button (click)="orderService.goTo(elem.tourId)" class="btn btn-primary">Go To Tour</button>
       </div>
       <div class="priceTour">
           <p>Phone: {{elem.phone}}</p>
         <p style="margin-bottom: 0px">Price: {{elem.totalPrice}}</p>
-        <p>Status {{getStatus(elem.isConfirmed)}}</p>
-        <button style="margin-top: 5px;"class="btn btn-primary">Confirm</button>
       </div>
     </div>
   </div>

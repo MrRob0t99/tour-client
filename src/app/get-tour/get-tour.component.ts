@@ -19,18 +19,21 @@ export class GetTourComponent implements OnInit {
   tour: any;
   listUrl = Array<string>();
 
-  constructor(private router: ActivatedRoute, private route: Router, private dialog: MatDialog, private authService: AuthService,
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, private dialog: MatDialog, public authService: AuthService,
     private tourService: TourService, private busketService: BusketService, private errorHandler: ExpectedService) {
   }
 
   ngOnInit() {
-    this.id = this.router.snapshot.params['id'];
+    this.id = this.activatedRoute.snapshot.params['id'];
     this.get();
   }
 
   addToBusket() {
-    this.busketService.post(this.id).subscribe(response => {
-
+    if (!this.authService.isLoggedIn()) {
+      this.router.navigateByUrl('/logIn');
+    }
+    this.busketService.post({ tourId: this.id }).subscribe( _ => {
+      alert('Added to busket');
     }, this.errorHandler.handle);
   }
 
@@ -50,18 +53,19 @@ export class GetTourComponent implements OnInit {
   toOrder() {
     const dialogRef = this.dialog.open(AddOrderComponent, {
       width: '400px',
-      height: '570px'
+      height: '620px'
     });
     dialogRef.componentInstance.tourPrice = this.tour.price;
     dialogRef.componentInstance.totalPrice = this.tour.price;
     dialogRef.componentInstance.tourId = this.tour.id;
     dialogRef.afterClosed().subscribe(result => {
-      this.route.navigateByUrl('/orders');
+      this.router.navigateByUrl('/orders');
     });
   }
+
   deleteTour() {
     this.tourService.delete(this.id).subscribe(response => {
-      this.route.navigateByUrl('/tours');
+      this.router.navigateByUrl('/tours');
     });
   }
 

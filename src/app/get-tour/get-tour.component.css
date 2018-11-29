@@ -1,84 +1,74 @@
-.conteiner{
-  padding: 0;
-  min-width: 100%;
-  min-height: 100%;
-}
-
-.conteinerCarousel{
-  border-top: 10px solid #2f8def;
-  margin-left: 82px;
+.conteinerCarousel {
+  border-top: 5px solid #2f8def;
+  margin-left: 80px;
   float: left;
 }
 
-.close {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 20px;
-    height: 20px;
-    left: 180px;
-  }
-  .main{
-    margin-top: 50px;
-    height: 500px;
-  }
-  
-  .main mat-form-field{
-    width: 400px;
-  }
+.main {
+  margin-top: 50px;
+  height: 500px;
+}
 
-.hotelDescription{
+.hotelDescription {
   float: left;
-  height: 400px;
+  height: 395px;
   background: #2f8def;
   width: 300px;
   color: white;
 }
 
-.center{
+.center {
   text-align: center;
 }
-.content{
+
+.content {
   margin-top: 40px;
   height: 100%;
 }
-.images{
+
+.images {
   width: 100%;
   max-height: 390px;
 }
 
-.item{
+.item {
   width: 600px;
-
 }
-.hotelInfo{
+
+.hotelInfo {
   width: 300px;
   height: 400px;
   float: left;
 }
-.icon{
+
+.icon {
   float: left;
   width: 20px;
   height: 20px;
   margin-top: 5px;
   margin-right: 8px;
 }
-.float{
-  list-style-type: none; 
+
+.float {
+  list-style-type: none;
   width: 30px;
   height: 30px;
 }
-li{
+
+li {
   list-style-type: none;
   margin-bottom: 15px;
 }
-.right{
+
+.right {
   float: right;
 }
-ul{
+
+ul {
   margin-top: 10px;
 }
-li button{
+
+li button {
   width: 100%;
   font-size: 16px;
 }

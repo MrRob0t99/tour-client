@@ -1,0 +1,7 @@
+<div class="container">
+  <mat-form-field>
+    <input matInput placeholder="Name" required [(ngModel)]="newItem">
+  </mat-form-field>
+  <button class="canselButton" color="primary" (click)="close()" mat-raised-button>Cansel</button>
+  <button class="submitButton" color="primary" [mat-dialog-close]="newItem" mat-raised-button>Submit</button>
+</div>
