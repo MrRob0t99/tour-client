@@ -14,6 +14,7 @@ import 'rxjs/Rx';
 import { ExpectedService } from '../services/expected.service';
 import { Router } from '@angular/router';
 import { AddPlaceComponent } from '../add-place/add-place.component';
+import { ExceptionHandlerService } from '../exception-handler.service';
 
 @Component({
   selector: 'app-add-tour',
@@ -39,7 +40,7 @@ export class AddTourComponent {
 
   constructor(private hotelService: HotelService, private router: Router,
     public dialog: MatDialog, private cityService: CityService, private countryService: CountryService,
-    private tourService: TourService, private errorHandler: ExpectedService) {
+    private errorHandler: ExceptionHandlerService, private tourService: TourService) {
     this.getCountries();
     this.addTour = new FormGroup({
       'name': new FormControl('', Validators.required),
@@ -98,7 +99,7 @@ export class AddTourComponent {
     this.cityService.getById<Array<City>>(countryId)
       .subscribe(respose => {
         this.listCities = respose.data;
-      }, this.errorHandler.handle);
+      }, error => this.errorHandler.handle(error));
   }
 
   getHotels(cityId: number) {
@@ -194,7 +195,12 @@ export class AddTourComponent {
         this.getCountries();
         this.selectedCountry = response.data;
         this.getCities(this.selectedCountry);
-      }, this.errorHandler.handle);
+      }, error => {
+        const id = this.listCountry[0].id;
+        this.selectedCountry = id;
+        this.getCities(id);
+        this.errorHandler.handle(error);
+      });
   }
 
   createCity(name: string) {
@@ -208,7 +214,12 @@ export class AddTourComponent {
         this.getCities(this.selectedCountry);
         this.selectedCity = response.data;
         this.getHotels(this.selectedCity);
-      }, this.errorHandler.handle);
+      }, error => {
+        const id = this.listCities[0].id;
+        this.selectedCity = id;
+        this.getHotels(id);
+        this.errorHandler.handle(error);
+      });
   }
 
   createHotel(hotel: Hotel) {

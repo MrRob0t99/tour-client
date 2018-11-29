@@ -51,6 +51,10 @@ import { AboutUsComponent } from './about-us/about-us.component';
 import { ContactComponent } from './contact/contact.component';
 import { AdminOrdersComponent } from './amin-orders/amin-orders.component';
 import { AddPlaceComponent } from './add-place/add-place.component';
+import { AlertService } from './services/alert.service';
+import { ExpectedService } from './services/expected.service';
+import { ExceptionHandlerService } from './exception-handler.service';
+import { AlertComponent } from './alert/alert.component';
 
 const appRoutes: Routes = [
   { path: 'registration', component: RegistrationComponent },
@@ -93,7 +97,7 @@ export function tokenGetter() {
     ContactComponent,
     AdminOrdersComponent,
     AddPlaceComponent,
-
+    AlertComponent,
   ],
   imports: [
     FormsModule,
@@ -139,6 +143,8 @@ export function tokenGetter() {
     HotelService,
     OrderService,
     TourService,
+    ExceptionHandlerService,
+    AlertService
     // { provide: ErrorHandler, useClass: AppErrorHandler }
   ],
 

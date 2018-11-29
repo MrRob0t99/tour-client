@@ -5,7 +5,7 @@ import { User } from '../model/user.model';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AppResponse } from '../response/response';
 import { Observable } from 'rxjs';
-import { throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +13,7 @@ import { throwError } from 'rxjs';
 export class AuthService {
 
   uri = 'https://tourserver20181125101924.azurewebsites.net/api/Auth/';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
   private handlerError(response: HttpErrorResponse) {
     return Observable.throw(response.error.error);
@@ -41,6 +41,7 @@ export class AuthService {
   }
 
   logout() {
+    this.router.navigateByUrl('tours');
     localStorage.removeItem('token');
   }
 

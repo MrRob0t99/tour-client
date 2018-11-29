@@ -12,7 +12,7 @@ export class DataService {
     }
 
     post(body: any) {
-        return this.http.post<AppResponse<number>>(this.uri, body);
+        return this.http.post<AppResponse<number>>(this.uri, body).catch(this.handlerError);
     }
 
     delete(id: number) {

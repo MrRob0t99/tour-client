@@ -1,0 +1,9 @@
+.container {
+    height: 40px;
+    position: fixed;
+    bottom: 0%;
+    opacity: 1;
+    text-align: center;
+    width: 50%;
+    margin-left: 25%;
+}
