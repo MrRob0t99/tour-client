@@ -1,3 +1,7 @@
+.index{
+  z-index: 2001;
+}
+
 .conteiner {
   overflow: hidden;
   background-color: #333;
@@ -36,6 +40,28 @@ nav a {
 
 .iconBasketHref:hover .iconBasket {
   color: black;
+}
+
+nav .iconBasketHref {
+  position: relative;
+}
+
+.iconBasketHref::after {
+  content: attr(data);
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #fff;
+  min-width: 20px;
+  height: 20px;
+  border-radius: 15px;
+  padding: 2px 4px; 
+  background-color: #007bff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .logo{
   width: 140px;

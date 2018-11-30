@@ -8,13 +8,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { RegistrationComponent } from './registration/registration.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material';
-import { MatSidenavModule, MatToolbarModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSelectModule } from '@angular/material/select';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { LogInComponent } from './log-in/log-in.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
@@ -22,12 +18,10 @@ import { FooterComponent } from './footer/footer.component';
 import { AddTourComponent } from './add-tour/add-tour.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { AddHotelComponent } from './add-hotel/add-hotel.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { GetAllTourComponent } from './get-all-tour/get-all-tour.component';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { GetTourComponent } from './get-tour/get-tour.component';
 import { Ng5SliderModule } from 'ng5-slider';
-import { NouisliderModule } from 'ng2-nouislider';
 import { BusketComponent } from './busket/busket.component';
 import { AddOrderComponent } from './add-order/add-order.component';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -55,18 +49,18 @@ import { AlertService } from './services/alert.service';
 import { ExpectedService } from './services/expected.service';
 import { ExceptionHandlerService } from './exception-handler.service';
 import { AlertComponent } from './alert/alert.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const appRoutes: Routes = [
+  { path: '', component: GetAllTourComponent },
   { path: 'registration', component: RegistrationComponent },
   { path: 'logIn', component: LogInComponent },
+  { path: 'tour/add', component: AddTourComponent, canActivate: [AdminAuthGuardService] },
   { path: 'tour/:id', component: GetTourComponent },
-  { path: '', component: GetAllTourComponent },
-  { path: 'tours', component: GetAllTourComponent },
   { path: 'confirmEmail', component: ConfirmEmailComponent },
   { path: 'orders', component: HistoryOrdersComponent, canActivate: [AuthGuardService] },
   { path: 'admin-order', component: AdminOrdersComponent, canActivate: [AuthGuardService] },
   { path: 'busket', component: BusketComponent, canActivate: [AuthGuardService] },
-  { path: 'add-tour', component: AddTourComponent, canActivate: [AdminAuthGuardService] },
   { path: 'sss', component: ConfirmEmailComponent },
   { path: '**', component: NotFoundComponent }
 ];
@@ -106,31 +100,25 @@ export function tokenGetter() {
     MatDatepickerModule,
     MatNativeDateModule,
     MatDatepickerModule,
-    MatCheckboxModule,
     BrowserModule,
     BrowserAnimationsModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSidenavModule,
     MatIconModule,
-    MatToolbarModule,
     MatSelectModule,
     MatDialogModule,
-    MatTooltipModule,
     NgxPaginationModule,
     RouterModule.forRoot(appRoutes),
-    NgbModule,
     Ng5SliderModule,
-    NouisliderModule,
     HttpClientModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: tokenGetter,
         whitelistedDomains: ['tourserver20181125101924.azurewebsites.net', 'localhost:1111']
       }
-    })
+    }),
   ],
   providers: [
     MatDatepickerModule,

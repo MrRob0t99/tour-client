@@ -41,8 +41,8 @@ export class AuthService {
   }
 
   logout() {
-    this.router.navigateByUrl('tours');
     localStorage.removeItem('token');
+    this.router.navigateByUrl('');
   }
 
   isLoggedIn(): boolean {

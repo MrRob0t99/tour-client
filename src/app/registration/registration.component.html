@@ -3,38 +3,51 @@
       <form [formGroup]="registrationForm">
          <mat-form-field>
             <input matInput placeholder="FirstName" formControlName="firstName" required>
-            <mat-error *ngIf="!registrationForm.get('firstName').valid && registrationForm.get('firstName').touched">Firstname
-               is required</mat-error>
+            <mat-error *ngIf="!firstName.valid && firstName.touched">
+               <mat-error *ngIf="firstName.errors.required">firstName is required</mat-error>
+            </mat-error>
          </mat-form-field>
          <mat-form-field>
             <input matInput placeholder="LastName" formControlName="lastName" required>
-            <mat-error *ngIf="!registrationForm.get('lastName').valid && registrationForm.get('lastName').touched">Lastname
-               is required</mat-error>
+            <mat-error *ngIf="!lastName.valid && lastName.touched">Lastname is required</mat-error>
          </mat-form-field>
          <mat-form-field>
             <input matInput placeholder="UserName" formControlName="userName" required>
-            <mat-error *ngIf="!registrationForm.get('userName').valid && registrationForm.get('userName').touched">Surename
-               is required</mat-error>
+            <mat-error *ngIf="!userName.valid && userName.touched">
+               <mat-error *ngIf="userName.errors.required">Username is required</mat-error>
+               <mat-error *ngIf="userName.errors.minlength">Minimum length {{userName.errors.minlength.requiredLength}}
+                  charter</mat-error>
+               <mat-error *ngIf="userName.errors.maxlength">Maximum length {{userName.errors.maxlength.requiredLength}}
+                  charter</mat-error>
+            </mat-error>
+
          </mat-form-field>
          <mat-form-field>
             <input matInput placeholder="Email" formControlName="email" required>
-            <mat-error *ngIf="!registrationForm.get('email').valid && registrationForm.get('email').touched">Surename
-               is required</mat-error>
+            <mat-error *ngIf="!email.valid && email.touched">
+               <mat-error *ngIf="email.errors.required">Email is required</mat-error>
+               <mat-error *ngIf="email.errors.email">Email not valid</mat-error>
+            </mat-error>
          </mat-form-field>
          <mat-form-field>
-            <input required matInput placeholder="Enter your password" [type]="hidePassword ? 'password' : 'text'"
-               formControlName="password">
-            <mat-icon class="icon" matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' :
-               'visibility'}}</mat-icon>
+            <input required matInput placeholder="Password" [type]="hidePassword ? 'password' : 'text'" formControlName="password">
+            <mat-icon class="icon" matSuffix (click)="hidePassword = !hidePassword">{{hide(hidePassword)}}</mat-icon>
+            <mat-error *ngIf="!password.valid && password.touched">
+               <mat-error *ngIf="password.errors.required">Password required</mat-error>
+               <mat-error *ngIf="password.errors.pattern">Password not valid</mat-error>
+            </mat-error>
          </mat-form-field>
-         <mat-form-field onselectstart="return false" onpaste="return false;" onCopy="return false" onCut="return false"
-            onDrag="return false" onDrop="return false">
-            <input required matInput placeholder="Enter your password" [type]="hideConfirmPassword ? 'password' : 'text'"
+
+         <mat-form-field style="max-height: 50px;">
+            <input style="margin-bottom: 0px; padding-bottom: 0px;" required matInput placeholder="Confirm Password" [type]="hideConfirmPassword ? 'password' : 'text'"
                formControlName="confirmPassword">
-            <mat-icon class="icon" matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{hideConfirmPassword
-               ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-icon class="icon" matSuffix (click)="hideConfirmPassword = !hideConfirmPassword">{{hide(hideConfirmPassword)}}</mat-icon>
+            <mat-error *ngIf="password.valid && isEquels()">Confirm password and password dont mathc</mat-error>
          </mat-form-field>
-         <button (click)="submit()" class="submitButton" [disabled]="registrationForm.invalid || !isEquels()"
+         <mat-error style="font-size: 13.5px; text-align: left;" *ngIf="password.valid && isEquels()">Confirm password and password dont match</mat-error>
+
+
+         <button (click)="submit()" class="submitButton" [disabled]="registrationForm.invalid || isEquels()"
             mat-raised-button>Submit</button>
       </form>
    </div>

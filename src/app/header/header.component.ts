@@ -13,11 +13,16 @@ import { ContactComponent } from '../contact/contact.component';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(public authService: AuthService, private busketService: BusketService,
+  count = 2;
+  constructor(public authService: AuthService, public busketService: BusketService,
     public dialog: MatDialog) {
   }
 
   ngOnInit() {
+    if (this.authService.isLoggedIn()) {
+      this.busketService.getCount();
+    }
+
   }
 
   openDialogAboutUs() {

@@ -1,4 +1,4 @@
-<div class="main">
+<div *ngIf="tour" class="main">
   <h1 class="center">{{tour.name}}</h1>
   <div class="content">
     <div class="conteinerCarousel">
@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    <div class="hotelDescription">
+    <div class="hotelDescription" >
       <p class="center">
         {{tour.description}}
       </p>

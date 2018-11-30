@@ -184,7 +184,7 @@ export class AddTourComponent {
   send(tourId: number) {
     this.tourService.sendFiles(this.listUrl, tourId)
       .subscribe(response => {
-        this.router.navigateByUrl('/get-tour/' + tourId);
+        this.router.navigateByUrl('/tour/' + tourId);
       }, this.errorHandler.handle);
   }
 

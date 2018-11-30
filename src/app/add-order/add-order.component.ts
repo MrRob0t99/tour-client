@@ -38,8 +38,6 @@ export class AddOrderComponent {
     const yyyy = today.getFullYear();
     this.minDate = new Date(yyyy, mm, dd + 1);
     this.maxDate = new Date(yyyy + 2, mm, dd);
-
-    console.log(this.tourPrice);
   }
 
   countTotalPrice() {

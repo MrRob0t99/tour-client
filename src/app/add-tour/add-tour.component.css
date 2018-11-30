@@ -40,26 +40,6 @@
     width: 100%;
 }
 
-.myPhoto {
-    width: 100px;
-    height: 100px;
-    background: aqua;
-}
-
-.images {
-    width: 100%;
-    height: 100%;
-    min-height: 100%;
-    min-width: 100%;
-    object-fit: cover;
-}
-
-#myCarousel, .carousel-inner {
-    width: 100%;
-    height: 260px;
-    max-height: 260px;
-}
-
 .btn-file {
     display: inline-block;
     text-align: center;
@@ -105,4 +85,12 @@
 
 .buttons {
     margin-top: 20px;
+}
+.containerPhoto{
+    width: 100%;
+    height: 250px;
+}
+.images {
+    min-width: 100%;
+    min-height: 100%;
 }

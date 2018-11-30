@@ -6,6 +6,7 @@ import { TourService } from '../services/tour.service';
 import { BusketService } from '../services/busket.service';
 import { ExpectedService } from '../services/expected.service';
 import { AuthService } from '../services/auth.service';
+import { AlertService } from '../services/alert.service';
 
 
 @Component({
@@ -20,7 +21,8 @@ export class GetTourComponent implements OnInit {
   listUrl = Array<string>();
 
   constructor(private activatedRoute: ActivatedRoute, private router: Router, private dialog: MatDialog, public authService: AuthService,
-    private tourService: TourService, private busketService: BusketService, private errorHandler: ExpectedService) {
+    private tourService: TourService, private busketService: BusketService, private errorHandler: ExpectedService,
+    private alertService: AlertService) {
   }
 
   ngOnInit() {
@@ -31,10 +33,14 @@ export class GetTourComponent implements OnInit {
   addToBusket() {
     if (!this.authService.isLoggedIn()) {
       this.router.navigateByUrl('/logIn');
+      return;
     }
-    this.busketService.post({ tourId: this.id }).subscribe( _ => {
-      alert('Added to busket');
-    }, this.errorHandler.handle);
+    this.busketService.post({ tourId: this.id }).subscribe(_ => {
+      this.busketService.getCount();
+      this.alertService.success('Added to busket');
+    }, error => {
+      this.errorHandler.handle(error);
+    });
   }
 
   get() {
@@ -65,7 +71,7 @@ export class GetTourComponent implements OnInit {
 
   deleteTour() {
     this.tourService.delete(this.id).subscribe(response => {
-      this.router.navigateByUrl('/tours');
+      this.router.navigateByUrl('');
     });
   }
 

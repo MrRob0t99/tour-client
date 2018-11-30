@@ -15,7 +15,7 @@ import { CityEnum } from '../model/city-enum.model';
 })
 export class HistoryOrdersComponent {
 
-  Items: any;
+  Items = Array<Order>();
   TypeOfFood = TypeOfFood;
   CityEnum = CityEnum;
 

@@ -14,7 +14,7 @@ import { AddOrderComponent } from '../add-order/add-order.component';
 })
 export class BusketComponent implements OnInit {
 
-  Items: Array<Busket>;
+  Items = new Array<Busket>();
   constructor(private router: Router, private busketService: BusketService, public dialog: MatDialog,
     private errorHandler: ExpectedService) {
     this.getItem();
@@ -49,6 +49,7 @@ export class BusketComponent implements OnInit {
 
   deleteFromBusket(tourId: number) {
     this.busketService.delete(tourId).subscribe(response => {
+      this.busketService.getCount();
       this.getItem();
     });
   }

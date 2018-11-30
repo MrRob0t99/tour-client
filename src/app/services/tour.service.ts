@@ -16,8 +16,6 @@ export class TourService extends DataService {
   }
 
   sendFiles(listUrl: Array<any>, tourId: number) {
-    console.log(tourId);
-    console.log('FilesmodelWorks');
     const uploadData = new FormData();
     listUrl.forEach(f => {
       uploadData.append('files', f.value, f.value.name);

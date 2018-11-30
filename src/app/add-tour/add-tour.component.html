@@ -43,12 +43,12 @@
       <div id="myCarousel" class="carousel slide" data-ride="carousel" *ngIf="listUrl[0]">
         <div class="carousel-inner" role="listbox">
 
-          <div class="item active" id="firstElem">
+          <div class="item active containerPhoto" id="firstElem">
             <a (click)=close(listUrl[0])><img class="close" src="/assets/baseline-close-24px (1).svg" /></a>
             <img [src]="listUrl[0].key" class="images">
           </div>
 
-          <div *ngFor="let elem of getList()" class="item">
+          <div *ngFor="let elem of getList()" class="item containerPhoto">
             <a (click)=close(elem)><img class="close" src="/assets/baseline-close-24px (1).svg" /></a>
             <img [src]="elem.key" class="images">
           </div>

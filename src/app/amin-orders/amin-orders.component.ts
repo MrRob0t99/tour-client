@@ -24,7 +24,6 @@ export class AdminOrdersComponent implements OnInit {
   getItem() {
     this.orderService.getAll<Array<Order>>(null, 'admin')
       .subscribe(response => {
-        console.log(response);
         this.Items = response.data;
       }, this.errorHandler.handle);
   }
